@@ -1,6 +1,5 @@
 import express from "express";
 import morgan from "morgan";
-import config from "./config";
 
 // Routes
 import productsRoutes from "./routes/products.routes";
@@ -8,7 +7,7 @@ import productsRoutes from "./routes/products.routes";
 const app= express();
 
 //Settings
-app.set('port', config.port);
+app.set('port', process.env.PORT || 3000);
 
 //Middlewares
 app.use(morgan('dev'));
