@@ -14,7 +14,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3000'
+  origin: ['http://localhost:3000', 'https://agreeable-field-0ddf53910.3.azurestaticapps.net']
 }));
 
 //Routes
