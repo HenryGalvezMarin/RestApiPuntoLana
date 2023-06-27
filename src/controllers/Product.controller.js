@@ -1,6 +1,26 @@
 import {getConnection} from "./../database/database";
 import sql from "mssql";
 
+const getProductsNamePrice = async (req, res) => {
+    try {
+        const pool = await getConnection();
+        const result = await pool.request().query('Select name, price from dbo.products');
+        const data = result.recordset;        
+        let products = "";
+        data.forEach(product => {
+            products += `${product.name} - S/. ${product.price} \n`;
+        });        
+        products += `Total de productos: ${data.length}`;        
+        res.send(products);
+    } catch (error) {
+        res.status(500);
+        res.send(error.message);
+    }
+}
+
+
+        
+
 const getProducts = async (req, res) => {
     try {
         const pool = await getConnection();
@@ -92,6 +112,7 @@ const deleteProduct = async (req, res) => {
 
 export const methods = {
     getProducts,
+    getProductsNamePrice,
     getProduct,
     addProduct,
     updateProduct,

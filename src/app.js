@@ -4,7 +4,7 @@ import cors from "cors";
 
 // Routes
 import productsRoutes from "./routes/products.routes";
-
+import watsonRoutes from "./routes/watson.routes";
 const app= express();
 
 //Settings
@@ -19,5 +19,6 @@ app.use(cors({
 
 //Routes
 app.use('/api/products', productsRoutes);
+app.use('/api/watson', watsonRoutes)
 
 export default app;
